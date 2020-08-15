@@ -9,10 +9,18 @@ dicom_test:
     path: data/01_raw/dicom-images-test
     filename_suffix: ".dcm"
 
-
-
 dicom_train:
     type: PartitionedDataSet
     dataset: pneumothorax.io.datasets.dicom_dataset.DICOMDataSet
     path: data/01_raw/dicom-images-train
     filename_suffix: ".dcm"
+
+img_train:
+    type: PartitionedDataSet
+    dataset: pillow.ImageDataSet
+    path: data/02_intermediate/img_train
+    filename_suffix: ".png"
+
+csv_train:
+    type: pandas.CSVDataSet
+    filepath: data/02_intermediate/train.csv

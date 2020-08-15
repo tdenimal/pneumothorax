@@ -33,6 +33,10 @@ from typing import Dict
 
 from kedro.pipeline import Pipeline
 
+
+from pneumothorax.pipelines.data_engineering import pipeline as de
+
+
 def create_pipelines(**kwargs) -> Dict[str, Pipeline]:
     """Create the project's pipeline.
 
@@ -44,4 +48,11 @@ def create_pipelines(**kwargs) -> Dict[str, Pipeline]:
 
     """
 
-    return {"__default__": Pipeline([])}
+    de_pipeline = de.create_pipeline()
+
+
+    return {
+        "de": de_pipeline,
+        "__default__": de_pipeline,
+    }
+

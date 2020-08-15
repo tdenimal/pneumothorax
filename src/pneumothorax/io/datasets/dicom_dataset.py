@@ -42,8 +42,11 @@ class DICOMDataSet(AbstractDataSet):
             ds = pydicom.dcmread(f)
 
             df = pd.DataFrame.from_records([(el.name,el.value) for el in ds if el.name not in ['Pixel Data', 'File Meta Information Version']])
+            df = df.T
+            df.columns = df.iloc[0]
+            df = df.iloc[1:]
             pixel_array = ds.pixel_array
-            return (ds,pixel_array)
+            return (df,pixel_array)
     
 
     def _save(self, data: np.ndarray) -> None:
