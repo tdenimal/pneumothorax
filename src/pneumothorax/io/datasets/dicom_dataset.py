@@ -41,9 +41,13 @@ class DICOMDataSet(AbstractDataSet):
         with self._fs.open(load_path) as f:
             ds = pydicom.dcmread(f)
 
+            #Convert metadata records to dataframe
             df = pd.DataFrame.from_records([(el.name,el.value) for el in ds if el.name not in ['Pixel Data', 'File Meta Information Version']])
+            #Convert row to columns
             df = df.T
+            #Set first line as header
             df.columns = df.iloc[0]
+            #Delete first line
             df = df.iloc[1:]
             pixel_array = ds.pixel_array
             return (df,pixel_array)
