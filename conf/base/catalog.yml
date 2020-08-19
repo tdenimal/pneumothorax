@@ -9,6 +9,12 @@ dicom_test:
     path: data/01_raw/dicom-images-test
     filename_suffix: ".dcm"
 
+
+dicom_dummy:
+    type: pneumothorax.io.datasets.dicom_dataset.DICOMDataSet
+    filepath: data/01_raw/dicom-images-train/1.2.276.0.7230010.3.1.4.8323329.300.1517875162.258081.dcm
+
+
 dicom_train:
     type: PartitionedDataSet
     dataset: pneumothorax.io.datasets.dicom_dataset.DICOMDataSet
