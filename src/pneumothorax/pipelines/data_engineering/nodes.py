@@ -2,13 +2,20 @@ import pandas as pd
 import numpy as np
 
 from typing import List,Dict,Tuple
-
-from kedro.io import PartitionedDataSet, MemoryDataSet
 from PIL import Image
 
 
 def array_to_img(array: np.ndarray, 
                 size: Tuple[int, int] = (256,256)) -> Image:
+    """Convert np.ndarray (pixel array) to PIL.Image and resizes eventually
+
+    Args:
+        array (np.ndarray): the input pixel array
+        size (Tuple[int, int], optional): (width,height) of returned PIL.Image. Defaults to (256,256).
+
+    Returns:
+        Image: PIL.Image as output
+    """
     return Image.fromarray(array).resize(size=(size[0], size[1]))
 
 
@@ -16,11 +23,11 @@ def array_to_img(array: np.ndarray,
 def preprocess_dicom(dicom: Dict) -> List:
     """Extract data from dicom.
 
-        Args:
-            dicom: Source data.
-        Returns:
-            Preprocessed data.
+    Args:
+        dicom (Dict): dcm files ( PartitionedDataSet )
 
+    Returns:
+        List: [pandas.DataFrame (csv file), Dict of PIL.IMage ( PartitionedDataSet )
     """
 
     #Init data with first dict item
