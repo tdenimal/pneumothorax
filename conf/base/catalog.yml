@@ -24,7 +24,7 @@ dicom_train:
 img_train:
     type: PartitionedDataSet
     dataset: pillow.ImageDataSet
-    path: data/02_intermediate/img_train
+    path: data/05_model_input/img_train
     filename_suffix: ".png"
 
 csv_train:
