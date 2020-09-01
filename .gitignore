@@ -1,6 +1,10 @@
 ##########################
 # KEDRO PROJECT
 
+# ignore all vscode files
+.vscode/settings.json
+
+
 # ignore all local configuration
 conf/local/**
 !conf/local/.gitkeep
