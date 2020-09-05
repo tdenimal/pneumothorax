@@ -50,3 +50,29 @@ def preprocess_dicom(dicom: Dict) -> List:
         )
 
     return [csv,imgs]
+
+
+
+def clean_metadata(csv : pd.DataFrame) -> pd.DataFrame:
+    """Clean csv metadata.
+       Removes useless data (cardinality = 1)
+       Removes data with missing image
+
+
+    Args:
+        csv (pd.DataFrame): input raw metadata csv
+
+    Returns:
+        pd.DataFrame: cleaned metadata csv
+    """
+
+    #Let's drop any useless columns with cardinality <= 1
+    col_drops = []
+
+    for col in csv.columns:
+        if len(csv[col].value_counts()) <= 1:
+            col_drops += [col]
+
+    csv_train.drop(columns=col_drops,inplace=True)
+
+    return csv_train

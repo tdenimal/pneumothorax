@@ -8,25 +8,33 @@ dicom_test:
     dataset: pneumothorax.io.datasets.dicom_dataset.DICOMDataSet
     path: data/01_raw/dicom-images-test
     filename_suffix: ".dcm"
-
+    layer: raw
 
 dicom_dummy:
     type: pneumothorax.io.datasets.dicom_dataset.DICOMDataSet
     filepath: data/01_raw/dicom-images-train/1.2.276.0.7230010.3.1.4.8323329.300.1517875162.258081.dcm
-
+    layer: raw
 
 dicom_train:
     type: PartitionedDataSet
     dataset: pneumothorax.io.datasets.dicom_dataset.DICOMDataSet
     path: data/01_raw/dicom-images-train
     filename_suffix: ".dcm"
+    layer: raw
 
 img_train:
     type: PartitionedDataSet
     dataset: pillow.ImageDataSet
     path: data/05_model_input/img_train
     filename_suffix: ".png"
+    layer: model_input
 
 csv_train:
     type: pandas.CSVDataSet
     filepath: data/02_intermediate/train.csv
+    layer: intermediate
+
+csv_clean:
+    type: pandas.CSVDataSet
+    filepath: data/03_primary/train.csv
+    layer: primary
